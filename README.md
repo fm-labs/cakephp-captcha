@@ -12,6 +12,13 @@ via composer
         "require": {
             "fm-labs/cakephp-captcha": "dev-master"
         }
+        "extra": {
+            "installer-paths": {
+                "plugins/{$name}/": [
+                    "fm-labs/cakephp-captcha"
+                ]
+            }
+        }
     }
  
  
