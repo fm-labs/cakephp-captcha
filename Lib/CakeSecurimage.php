@@ -1,6 +1,4 @@
 <?php
-App::import('Vendor', 'Captcha.securimage' . DS . 'securimage');
-
 class CakeSecurimage extends Securimage {
 
 	public function __construct($options = array()) {
