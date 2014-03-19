@@ -1,4 +1,11 @@
 <?php
+if (!class_exists('Securimage') && (
+		App::import('Vendor', array('name' => 'Captcha.autoload', 'file' => 'autoload.php'))
+		&& !class_exists('Securimage'))
+	) {
+	throw new Exception('Securimage library not found');
+}
+
 class CakeSecurimage extends Securimage {
 
 	public function __construct($options = array()) {

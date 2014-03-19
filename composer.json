@@ -15,5 +15,8 @@
     },
     "extra": {
         "installer-name": "Captcha"
+    },
+    "config": {
+        "vendor-dir": "Vendor"
     }
 }
