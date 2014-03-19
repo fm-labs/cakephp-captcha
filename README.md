@@ -1,7 +1,7 @@
 cakephp-captcha
 ===============
 
-CakePHP Captcha Plugin
+An easy-to-use Captcha Plugin for the [CakePHP Framework](http://www.cakephp.org) using [Securimage PHP Captcha library](http://www.phpcaptcha.org)
 
 
 # Install
@@ -17,13 +17,13 @@ via composer
  
 # Quick Setup
 
-1. Enable Plugin
+1) Enable Plugin
 
     //File: app/Config/bootstrap.php
-
+    
     CakePlugin::load('Captcha')
     
-3. Setup CaptchaBehavior for model
+2) Setup CaptchaBehavior for model
 
     //File: app/Model/Post.php
     
@@ -33,7 +33,7 @@ via composer
         
     }
     
-3. Use CaptchaFormHelper to embed captcha image in form
+3) Use CaptchaFormHelper to embed captcha image in form
 
     //File: app/View/Post/add.ctp
     
