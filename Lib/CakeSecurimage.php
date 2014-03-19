@@ -47,4 +47,15 @@ class CakeSecurimage extends Securimage {
 		return parent::getCodeFromDatabase();
 	}
 
+/**
+ * Static validator
+ *
+ * @param string $code
+ * @return boolean
+ */
+	public static function staticValidate($code) {
+		$Captcha = new self();
+		return $Captcha->check($code);
+	}
+
 }

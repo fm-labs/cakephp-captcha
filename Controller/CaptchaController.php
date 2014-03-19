@@ -4,7 +4,7 @@ App::uses('CaptchaAppController', 'Captcha.Controller');
 /**
  * CaptchaController
  *
- * @property CaptchaComponent $this->
+ * @property CaptchaComponent $Captcha
  */
 class CaptchaController extends CaptchaAppController {
 
@@ -21,11 +21,10 @@ class CaptchaController extends CaptchaAppController {
 	}
 
 /**
- * Renders a captcha image
+ * Renders a captcha image to browser
  */
 	public function image() {
-		//$this->Captcha->ttf_file = WWW_ROOT . 'fonts' . DS . 'AHGBold.ttf';
-		//$this->Captcha->ttf_file = App::pluginPath('Captcha').'Vendor'.DS.'securimage'.DS.'AHGBold.ttf';
+		$this->Captcha->create();
 		$this->Captcha->render();
 	}
 

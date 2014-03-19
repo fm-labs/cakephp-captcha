@@ -1,4 +1,5 @@
 <?php
+App::uses('Component', 'Controller');
 App::uses('CakeSecurimage', 'Captcha.Lib');
 
 /**
@@ -7,6 +8,9 @@ App::uses('CakeSecurimage', 'Captcha.Lib');
  * @see http://www.phpcaptcha.org (Offical PHP Captcha Securimage website)
  *
  * # Securimage is the only supported engine atm #
+ *
+ * @todo Dependency Injection
+ * @todo Support more captcha engines
  */
 class CaptchaComponent extends Component {
 
@@ -16,57 +20,51 @@ class CaptchaComponent extends Component {
 	protected $_engine;
 
 /**
- * Get instance of CakeSecurimage
+ * Magic engine param setter
  *
- * @return CakeSecurimage
+ * @param $key
+ * @param $val
+ * @throws Exception
  */
-	public function &engine() {
-		if (!$this->_engine) {
-			//TODO Dependency injection
-			//TODO Create an engine interface
-			$this->_engine = new CakeSecurimage();
-		}
-		return $this->_engine;
-	}
-
-	/*
-	public function __call($method, $params) {
-		return call_user_func_array(array($this->engine(), $method), $params);
-	}
-	*/
-
 	public function __set($key, $val) {
+		if (!$this->_engine) {
+			throw new Exception(__('Captcha engine has not been initialized'));
+		}
+
 		// auto-convert colors to Securimage_Color
 		$colors = array('signature_color', 'image_bg_color', 'text_color', 'line_color', 'noise_color');
 		if (in_array($key, $colors) && is_string($val)) {
 			$val = new Securimage_Color($val);
 		}
 
-		$this->engine()->{$key} = $val;
+		$this->_engine->{$key} = $val;
+	}
+
+/**
+ * Create engine instance
+ *
+ * @param array $config
+ * @throws Exception
+ */
+	public function create($config = array()) {
+		$this->_engine = new CakeSecurimage($config);
 	}
 
 /**
  * Output the captcha image to the browser
  */
 	public function render() {
-		return $this->engine()->show();
-	}
-
-	public function reset() {
-		$this->_engine = null;
+		return $this->_engine->show();
 	}
 
 /**
- * Verify
+ * Validate captcha code
  *
- * @param string $code
- * @return boolean
+ * @param $code
+ * @return bool
  */
-	public static function validateCode($code) {
-		//CakeSession::start();
-		//TODO Dependency injection
-		$Captcha = new CakeSecurimage();
-		return $Captcha->check($code);
+	public function validate($code) {
+		return CakeSecurimage::staticValidate($code);
 	}
 
 }
