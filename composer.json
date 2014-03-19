@@ -10,9 +10,13 @@
         }
     ],
     "require": {
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
+        "dapphp/securimage": "dev-master"
     },
     "extra": {
         "installer-name": "Captcha"
+    },
+    "config": {
+        "vendor-dir": "Vendor"
     }
 }
