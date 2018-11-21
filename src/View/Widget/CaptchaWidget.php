@@ -17,6 +17,10 @@ class CaptchaWidget extends BasicWidget
     {
         parent::__construct($templates);
 
+        $this->_templates->add([
+            'captcha_container' => '<div{{attrs}}>{{image}}{{reload}}</div>'
+        ]);
+
         $this->_View = $view;
     }
 
@@ -27,16 +31,6 @@ class CaptchaWidget extends BasicWidget
     {
         $captchaImageUrl = ['plugin' => 'Captcha', 'controller' => 'Captcha', 'action' => 'image'];
         $captchaDomId = uniqid('captcha');
-
-        $this->_templates->add([
-            'captcha_container' => '<div{{attrs}}>{{image}}{{reload}}</div>'
-        ]);
-
-        $data['type'] = 'text';
-
-        debug($data);
-        // input
-        $captchaInput = parent::render($data, $context);
 
         // captcha image
         $captchaImage = $this->_View->Html->image($captchaImageUrl, array(
@@ -54,12 +48,16 @@ class CaptchaWidget extends BasicWidget
             'href' => "javascript:void(0);"
         ));
 
-        // captcha
+        // captcha container
         $captchaHtml = $this->_templates->format('captcha_container', [
             'attrs' => '',
             'image' => $captchaImage,
             'reload' => $captchaReload
         ]);
+
+        // input
+        $data['type'] = 'text';
+        $captchaInput = parent::render($data, $context);
 
         return $captchaHtml . $captchaInput;
     }
