@@ -3,7 +3,6 @@
 namespace Captcha\Model\Behavior;
 
 use Cake\ORM\Behavior;
-use Captcha\Lib\CakeSecurimage;
 
 class CaptchaBehavior extends Behavior {
 
@@ -33,7 +32,6 @@ class CaptchaBehavior extends Behavior {
 				'message' => __('Captcha code not valid')
 			));
 	}
-	*/
 
 	public function validateCaptcha(Model $model, $check) {
 		$value = array_values($check);
@@ -41,5 +39,6 @@ class CaptchaBehavior extends Behavior {
 
 		return CakeSecurimage::staticValidate($value);
 	}
+	*/
 
 }
