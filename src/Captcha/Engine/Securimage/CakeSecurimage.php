@@ -1,21 +1,32 @@
 <?php
 
-namespace Captcha\Lib;
+namespace Captcha\Captcha\Engine\Securimage;
 
 use Securimage;
+use Securimage_Color;
 
+
+/**
+ * CakePHP wrapper for Securimage class
+ *
+ * @link https://www.phpcaptcha.org/Securimage_Docs/classes/Securimage.html
+ */
 class CakeSecurimage extends Securimage {
 
-	public function __construct($options = array()) {
+	public function __construct($options = []) {
 
-		$colorKeys = array('signature_color', 'image_bg_color', 'text_color', 'line_color', 'noise_color');
-		$options = array_map(function($val, $key) use ($colorKeys) {
-			if (in_array($key, $colorKeys) && is_string($val)) {
-				$val = new \Securimage_Color($val);
+		array_walk($options, function($val, $key) {
+			if (preg_match('/\_color$/', $key) && is_string($val)) {
+				$val = new Securimage_Color($val);
 			}
-
-		}, $options);
-		debug($options);
+			elseif (preg_match('/_file$/', $key) && is_string($val)) {
+				//@TODO build file path
+			}
+			elseif (preg_match('/_path$/', $key) && is_string($val)) {
+				//@TODO build path
+			}
+			return $val;
+		});
 
 		parent::__construct($options);
 	}
@@ -61,12 +72,12 @@ class CakeSecurimage extends Securimage {
 		parent::purgeOldCodesFromDatabase();
 	}
 
-/**
- * Static validator
- *
- * @param string $code
- * @return boolean
- */
+	/**
+	 * Static validator
+	 *
+	 * @param string $code
+	 * @return boolean
+	 */
 	public static function staticValidate($code) {
 		$Captcha = new self();
 		return $Captcha->check($code);
