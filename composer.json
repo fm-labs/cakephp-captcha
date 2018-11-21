@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4",
-        "dapphp/securimage": "^3.6"
+        "dapphp/securimage": "^3.6.7"
     },
     "autoload": {
         "psr-4": {
