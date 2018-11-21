@@ -10,13 +10,17 @@
         }
     ],
     "require": {
-        "composer/installers": "~1.0",
-        "dapphp/securimage": "dev-master"
+        "php": ">=5.4",
+        "dapphp/securimage": "^3.6"
     },
-    "extra": {
-        "installer-name": "Captcha"
+    "autoload": {
+        "psr-4": {
+            "Captcha\\": "src"
+        }
     },
-    "config": {
-        "vendor-dir": "Vendor"
+    "autoload-dev": {
+        "psr-4": {
+            "Captcha\\Test\\": "tests"
+        }
     }
 }

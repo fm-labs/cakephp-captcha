@@ -6,54 +6,48 @@ An easy-to-use Captcha Plugin for the [CakePHP Framework](http://www.cakephp.org
 
 # Install
 
-via composer
+Add to your composer.json
 
     {
         "require": {
             "fm-labs/cakephp-captcha": "dev-master"
         }
-        "extra": {
-            "installer-paths": {
-                "plugins/{$name}/": [
-                    "fm-labs/cakephp-captcha"
-                ]
-            }
-        }
     }
+    
+or run
+
+ $ composer require fm-labs/cakephp-captcha
  
  
 # Quick Setup
 
 1) Enable Plugin
 
-    //File: app/Config/bootstrap.php
+    //File: config/bootstrap.php
     
-    CakePlugin::load('Captcha')
+    Plugin::load('Captcha')
     
 2) Setup CaptchaBehavior for model
-
-    //File: app/Model/Post.php
     
-    class Post extends AppModel {
+    //File: In any model tabel (src/Model/Table/ModelName.php)
     
-        public $actsAs = array('Captcha.Captcha');
+    class ModelName {
+    
+        public function initialize()
+        {
+            // ... initialization code ...
+            $this->addBehavior('Captcha.Captcha');
+        }
         
     }
     
-3) Use CaptchaFormHelper to embed captcha image in form
+3) Use CaptchaFormHelper/CaptchaWidget to embed captcha image in forms
 
-    //File: app/View/Post/add.ctp
-    
-    $this->Helpers->load('Captcha.CaptchaForm');
-    
-    //...
-    
-    $this->Form->create('Post');
-    $this->Form->input('title');
-    
-    $this->CaptchaForm->input('captcha');
-   
-    //...
-    
-Done!
+    //File: In any view template
+        
+    $this->Form->create(null);
+    $this->Form->input('captcha', ['type' => 'captcha', 'captcha' => [/*Captcha Options here*/]]);
+    $this->Form->submit();
+    $this->Form->end();
+     
     
