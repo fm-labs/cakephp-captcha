@@ -3,7 +3,7 @@
 namespace Captcha\Controller\Component;
 
 use Cake\Controller\Component;
-use Captcha\Lib\CakeSecurimage;
+use Captcha\Captcha\Captcha;
 
 /**
  * CaptchaComponent
@@ -17,25 +17,33 @@ use Captcha\Lib\CakeSecurimage;
  */
 class CaptchaComponent extends Component {
 
-	/**
-	 * @var CakeSecurimage
-	 */
-	protected $_engine;
 
- 	/**
+	protected $_defaultConfig = [
+		'engine' => 'securimage'
+	];
+
+	/**
+	 * @var Captcha object instance
+	 */
+	protected $_captcha;
+
+	/**
 	 * Create engine instance
 	 *
-	 * @param array $config
- 	 */
-	public function create($config = array()) {
-		$this->_engine = new CakeSecurimage($config);
+	 * @return $this
+	 */
+	public function init() {
+		$this->_captcha = new Captcha($this->config('engine'));
+		return $this;
 	}
 
 	/**
 	 * Output the captcha image to the browser
+	 *
+	 * @return void
 	 */
 	public function render() {
-		return $this->_engine->show();
+		$this->_captcha->renderCode();
 	}
 
 	/**
@@ -45,7 +53,6 @@ class CaptchaComponent extends Component {
 	 * @return bool
 	 */
 	public function validate($code) {
-		return CakeSecurimage::staticValidate($code);
+		return $this->_captcha->validateCode($code);
 	}
-
 }
