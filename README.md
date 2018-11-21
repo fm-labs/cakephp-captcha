@@ -25,29 +25,16 @@ or run
 
     //File: config/bootstrap.php
     
-    Plugin::load('Captcha')
+    Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true);
     
-2) Setup CaptchaBehavior for model
-    
-    //File: In any model tabel (src/Model/Table/ModelName.php)
-    
-    class ModelName {
-    
-        public function initialize()
-        {
-            // ... initialization code ...
-            $this->addBehavior('Captcha.Captcha');
-        }
-        
-    }
-    
-3) Use CaptchaFormHelper/CaptchaWidget to embed captcha image in forms
+2) Use CaptchaWidget in forms
 
     //File: In any view template
+    $this->loadHelper('Captcha.Captcha');
         
     $this->Form->create(null);
-    $this->Form->input('captcha', ['type' => 'captcha', 'captcha' => [/*Captcha Options here*/]]);
+    $this->Form->input('captcha', ['type' => 'captcha']]);
+    //$this->Captcha->input('captcha'); // old/deprecated method
     $this->Form->submit();
     $this->Form->end();
      
-    
