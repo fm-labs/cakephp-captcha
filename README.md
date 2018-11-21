@@ -16,7 +16,7 @@ Add to your composer.json
     
 or run
 
- $ composer require fm-labs/cakephp-captcha
+    $ composer require fm-labs/cakephp-captcha
  
  
 # Quick Setup
