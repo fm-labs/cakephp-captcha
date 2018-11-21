@@ -6,13 +6,20 @@ use Cake\View\Form\ContextInterface;
 use Cake\View\View;
 use Cake\View\Widget\BasicWidget;
 
+/**
+ * class CaptchaWidget
+ */
 class CaptchaWidget extends BasicWidget
 {
     /**
-     * View
+     * @var View
      */
     protected $_View;
 
+    /**
+     * @param \Cake\View\StringTemplate $templates
+     * @param View $view
+     */
     public function __construct($templates, View $view)
     {
         parent::__construct($templates);
@@ -26,6 +33,9 @@ class CaptchaWidget extends BasicWidget
 
     /**
      * @TODO Refactor hard-coded captcha image url
+     * @param array $data
+     * @param ContextInterface $context
+     * @return string
      */
     public function render(array $data, ContextInterface $context)
     {
