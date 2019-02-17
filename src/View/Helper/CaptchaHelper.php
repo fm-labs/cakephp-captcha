@@ -12,20 +12,20 @@ use Cake\View\Helper;
  */
 class CaptchaHelper extends Helper
 {
-	public $helpers = ['Form'];
+    public $helpers = ['Form'];
 
-	public function initialize(array $config)
-	{
-		$this->Form->addWidget('captcha', ['Captcha\View\Widget\CaptchaWidget', '_view']);
-	}
+    public function initialize(array $config)
+    {
+        $this->Form->addWidget('captcha', ['Captcha\View\Widget\CaptchaWidget', '_view']);
+    }
 
-	/**
-	 * @deprecated Use CaptchaWidget instead
-	 */
-	public function input($field, array $config = [])
-	{
-		$config['type'] = 'captcha';
-		return $this->Form->input($field, $config);
-	}
+    /**
+     * @deprecated Use CaptchaWidget instead
+     */
+    public function input($field, array $config = [])
+    {
+        $config['type'] = 'captcha';
 
+        return $this->Form->input($field, $config);
+    }
 }

@@ -43,20 +43,21 @@ class CaptchaWidget extends BasicWidget
         $captchaDomId = uniqid('captcha');
 
         // captcha image
-        $captchaImage = $this->_View->Html->image($captchaImageUrl, array(
+        $captchaImage = $this->_View->Html->image($captchaImageUrl, [
             'id' => $captchaDomId,
             'class' => 'captcha-image'
-        ));
+        ]);
 
         // captcha reload button
-        $captchaReloadScript = sprintf("javascript:document.getElementById('%s').src='%s/' + Math.round(Math.random(0)*1000)+1; return false;",
+        $captchaReloadScript = sprintf(
+            "javascript:document.getElementById('%s').src='%s/' + Math.round(Math.random(0)*1000)+1; return false;",
             $captchaDomId,
             $this->_View->Html->Url->build($captchaImageUrl)
         );
-        $captchaReload = $this->_View->Html->link(__('Try another image'), $captchaImageUrl, array(
+        $captchaReload = $this->_View->Html->link(__('Try another image'), $captchaImageUrl, [
             'onclick' => $captchaReloadScript,
             'href' => "javascript:void(0);"
-        ));
+        ]);
 
         // captcha container
         $captchaHtml = $this->_templates->format('captcha_container', [
@@ -71,5 +72,4 @@ class CaptchaWidget extends BasicWidget
 
         return $captchaHtml . $captchaInput;
     }
-
 }

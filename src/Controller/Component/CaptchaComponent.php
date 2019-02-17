@@ -15,44 +15,48 @@ use Captcha\Captcha\Captcha;
  * @todo Dependency Injection
  * @todo Support more captcha engines
  */
-class CaptchaComponent extends Component {
+class CaptchaComponent extends Component
+{
 
+    protected $_defaultConfig = [
+        'engine' => 'securimage'
+    ];
 
-	protected $_defaultConfig = [
-		'engine' => 'securimage'
-	];
+    /**
+     * @var Captcha object instance
+     */
+    protected $_captcha;
 
-	/**
-	 * @var Captcha object instance
-	 */
-	protected $_captcha;
+    /**
+     * Create engine instance
+     *
+     * @return $this
+     */
+    public function init()
+    {
+        $this->_captcha = new Captcha($this->config('engine'));
 
-	/**
-	 * Create engine instance
-	 *
-	 * @return $this
-	 */
-	public function init() {
-		$this->_captcha = new Captcha($this->config('engine'));
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Output the captcha image to the browser
-	 *
-	 * @return void
-	 */
-	public function render() {
-		$this->_captcha->renderCode();
-	}
+    /**
+     * Output the captcha image to the browser
+     *
+     * @return void
+     */
+    public function render()
+    {
+        $this->_captcha->renderCode();
+    }
 
-	/**
-	 * Validate captcha code
-	 *
-	 * @param $code
-	 * @return bool
-	 */
-	public function validate($code) {
-		return $this->_captcha->validateCode($code);
-	}
+    /**
+     * Validate captcha code
+     *
+     * @param $code
+     * @return bool
+     */
+    public function validate($code)
+    {
+        return $this->_captcha->validateCode($code);
+    }
 }
