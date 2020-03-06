@@ -34,7 +34,7 @@ class CaptchaComponent extends Component
      */
     public function init()
     {
-        $this->_captcha = new Captcha($this->config('engine'));
+        $this->_captcha = new Captcha($this->getConfig('engine'));
 
         return $this;
     }

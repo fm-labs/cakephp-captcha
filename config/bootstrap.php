@@ -2,7 +2,7 @@
 use Captcha\Captcha\Captcha;
 
 if (empty(Captcha::configured())) {
-    Captcha::config('securimage', [
+    Captcha::setConfig('securimage', [
         'className' => 'Captcha.Securimage',
 //        'image_width' => 500,
 //        'text_color' => '#ff9000',
