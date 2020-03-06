@@ -23,7 +23,7 @@ class Captcha
     public function __construct($config = 'default')
     {
         if (is_string($config)) {
-            $config = (array)self::config($config);
+            $config = (array)self::getConfig($config);
         }
 
         $config += ['className' => null];
