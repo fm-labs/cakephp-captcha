@@ -29,7 +29,7 @@ class CaptchaController extends Controller
 
         /*
 		*/
-        $this->Captcha->config('engine', [
+        $this->Captcha->setConfig('engine', [
             'className' => 'Captcha.Securimage',
             //'image_width' => 500,
             'text_color' => '#ff9000',

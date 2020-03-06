@@ -26,6 +26,6 @@ class CaptchaHelper extends Helper
     {
         $config['type'] = 'captcha';
 
-        return $this->Form->input($field, $config);
+        return $this->Form->control($field, $config);
     }
 }
