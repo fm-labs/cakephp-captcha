@@ -19,7 +19,7 @@ class CaptchaComponent extends Component
 {
 
     protected $_defaultConfig = [
-        'engine' => 'securimage'
+        'engine' => 'securimage',
     ];
 
     /**

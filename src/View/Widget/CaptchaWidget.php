@@ -25,7 +25,7 @@ class CaptchaWidget extends BasicWidget
         parent::__construct($templates);
 
         $this->_templates->add([
-            'captcha_container' => '<div{{attrs}}>{{image}}{{reload}}</div>'
+            'captcha_container' => '<div{{attrs}}>{{image}}{{reload}}</div>',
         ]);
 
         $this->_View = $view;
@@ -45,7 +45,7 @@ class CaptchaWidget extends BasicWidget
         // captcha image
         $captchaImage = $this->_View->Html->image($captchaImageUrl, [
             'id' => $captchaDomId,
-            'class' => 'captcha-image'
+            'class' => 'captcha-image',
         ]);
 
         // captcha reload button
@@ -56,14 +56,14 @@ class CaptchaWidget extends BasicWidget
         );
         $captchaReload = $this->_View->Html->link(__('Try another image'), $captchaImageUrl, [
             'onclick' => $captchaReloadScript,
-            'href' => "javascript:void(0);"
+            'href' => "javascript:void(0);",
         ]);
 
         // captcha container
         $captchaHtml = $this->_templates->format('captcha_container', [
             'attrs' => '',
             'image' => $captchaImage,
-            'reload' => $captchaReload
+            'reload' => $captchaReload,
         ]);
 
         // input

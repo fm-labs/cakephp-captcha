@@ -28,7 +28,7 @@ class CaptchaController extends Controller
         }
 
         /*
-		*/
+        */
         $this->Captcha->setConfig('engine', [
             'className' => 'Captcha.Securimage',
             //'image_width' => 500,
