@@ -37,7 +37,7 @@ class CaptchaWidget extends BasicWidget
      * @param ContextInterface $context
      * @return string
      */
-    public function render(array $data, ContextInterface $context)
+    public function render(array $data, ContextInterface $context): string
     {
         $captchaImageUrl = ['plugin' => 'Captcha', 'controller' => 'Captcha', 'action' => 'image'];
         $captchaDomId = uniqid('captcha');
