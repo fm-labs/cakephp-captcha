@@ -25,7 +25,7 @@ class CaptchaBehavior extends Behavior
     public function setupField(Model $model, $field, $config) {
         $model->getValidator()
             ->add($field, 'captchaNotEmpty', array(
-                'rule' => 'notEmpty',
+                'rule' => 'notEmptyString',
                 'message' => __('Please enter the captcha code')
             ))
             ->add($field, 'captchaValidate', array(

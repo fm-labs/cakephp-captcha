@@ -67,7 +67,7 @@ class CaptchaController extends Controller
 
         $this->Captcha->init();
         if ($this->request->is(['put', 'post'])) {
-            if ($this->Captcha->validate($this->request->data('captcha'))) {
+            if ($this->Captcha->validate($this->request->getData('captcha'))) {
                 $this->Flash->success('Captcha code is valid');
             } else {
                 $this->Flash->error('Invalid captcha code');
