@@ -7,7 +7,7 @@ use Cake\ORM\Behavior;
 class CaptchaBehavior extends Behavior
 {
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
     }
 

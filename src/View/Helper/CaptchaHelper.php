@@ -14,7 +14,7 @@ class CaptchaHelper extends Helper
 {
     public $helpers = ['Form'];
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->Form->addWidget('captcha', ['Captcha\View\Widget\CaptchaWidget', '_view']);
     }
