@@ -4,7 +4,6 @@ namespace Captcha\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
-use Cake\Event\Event;
 use Cake\Http\Exception\NotFoundException;
 
 /**
@@ -19,16 +18,17 @@ class CaptchaController extends Controller
 
     public $components = ['Captcha.Captcha', 'Flash'];
 
+    /**
+     * @inheritDoc
+     */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
 
-        if ($this->Auth) {
-            $this->Auth->allow('image');
+        if ($this->Authentication) {
+            $this->Authentication->allowUnauthenticated('image');
         }
 
-        /*
-        */
         $this->Captcha->setConfig('engine', [
             'className' => 'Captcha.Securimage',
             //'image_width' => 500,
@@ -49,8 +49,10 @@ class CaptchaController extends Controller
 
     /**
      * Renders a captcha image to browser
+     *
+     * @return void
      */
-    public function image()
+    public function image(): void
     {
         $this->Captcha->init();
         $this->Captcha->render();
@@ -58,8 +60,10 @@ class CaptchaController extends Controller
 
     /**
      * Demo action
+     *
+     * @return void
      */
-    public function demo()
+    public function demo(): void
     {
         if (!Configure::read('debug')) {
             throw new NotFoundException();
